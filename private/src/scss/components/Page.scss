@@ -1,0 +1,32 @@
+@import '../tools/vars';
+
+.page {
+  position: relative;
+  .wio-link {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+  }
+  .main-image {
+    @media screen and (min-width: 900px) {
+      height: 50vh;
+      position: fixed;
+      top: 3rem;
+      overflow: hidden;
+      img {
+        object-fit: contain;
+      }
+    }
+  }
+
+  &__content {
+    background-color: $bgColor;
+    padding: $spacing--small;
+    @media screen and (min-width: 900px) {
+      position: relative;
+      transform: translateY(50vh);
+      padding: $spacing;
+    }
+  }
+}

@@ -1,16 +1,19 @@
 // Dependencies.
 import React from 'react';
 import { render } from 'react-dom';
-import Router from 'react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
 import ReactGA from 'react-ga';
+import App from './App';
 
 ReactGA.initialize('UA-102082775-1');
+const logPageView = () => {
+  ReactGA.set({ page: window.location.pathname + window.location.search });
+  ReactGA.pageview(window.location.pathname + window.location.search);
+};
 
-const App = () => (
-  <div className={'page'}>
-    <h1>Works!</h1>
-    <p>Yup yup.</p>
-  </div>
+render(
+  <Router onUpdate={logPageView}>
+    <App />
+  </Router>,
+  document.getElementById('app'),
 );
-
-render(<App />, document.getElementById('app'));

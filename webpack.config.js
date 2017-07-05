@@ -1,5 +1,4 @@
 const path = require('path');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const prod = process.env.NODE_ENV === 'production';
@@ -7,7 +6,7 @@ const prod = process.env.NODE_ENV === 'production';
 module.exports = {
   entry: path.resolve(__dirname, 'private', 'src', 'app', 'index.jsx'),
   output: {
-    path: path.resolve(__dirname, 'public', 'js'),
+    path: path.resolve(__dirname, 'public'),
     filename: 'app.bundle.js',
   },
   resolve: {
@@ -21,9 +20,9 @@ module.exports = {
     },
   },
   plugins: [
-    new ProgressBarPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'private', 'src', 'index.template.ejs'),
+      favicon: path.resolve(__dirname, 'private', 'src', 'favicon.ico'),
       inject: 'body',
       hash: true,
       minify: prod ? false : {
@@ -39,10 +38,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.html?$/,
-        loader: "file?name=[name].[ext]"
-      },
-      {
         test: /.jsx?$/,
         exclude: /node_modules/,
         include: path.join(__dirname, 'private', 'src', 'app'),
@@ -53,7 +48,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|svg|ico)$/,
+        test: /\.(png|jpg|svg)$/,
         loader: 'url-loader',
       },
       {

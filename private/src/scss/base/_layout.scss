@@ -1,4 +1,19 @@
+@import '../tools/vars';
+
 .container {
   max-width: 1024px;
-  margin: 2rem auto;
+}
+
+.sitemast {
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: $bgColor;
+  background-color: $fgColor;
+  width: 100%;
+  padding: $spacing--small;
+}
+
+.page-wrapper {
+  margin-top: 3rem;
 }
