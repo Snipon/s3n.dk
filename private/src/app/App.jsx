@@ -7,7 +7,7 @@ import Prismic from 'prismic.io';
 import PrismicToolbar from 'prismic-toolbar';
 import PrismicConfig from 'tools/prismic-configuration';
 // Components.
-import Page from 'components/page';
+import Page from 'components/Page';
 // Styles.
 import 'styles/main.scss';
 
