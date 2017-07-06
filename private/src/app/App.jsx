@@ -57,7 +57,7 @@ class App extends React.Component {
             <Page page="front" prismicCtx={this.state.prismicCtx} />
           </Route>
         </Switch>
-      </div> : false
+        </div> : false
     );
   }
 }
