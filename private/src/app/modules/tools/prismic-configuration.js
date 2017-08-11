@@ -1,6 +1,6 @@
 export default {
 
-  apiEndpoint: 'https://snipon.prismic.io/api',
+  apiEndpoint: 'https://snipon.cdn.prismic.io/api',
 
   // -- Access token if the Master is not open
   // accessToken: 'xxxxxx',
