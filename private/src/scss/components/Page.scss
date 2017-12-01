@@ -9,24 +9,25 @@
     z-index: 100;
   }
   .main-image {
+    img {
+      width: 100vw;
+    }
+
     @media screen and (min-width: 900px) {
-      height: 50vh;
+      overflow: hidden;
       position: fixed;
       top: 3rem;
-      overflow: hidden;
-      img {
-        object-fit: contain;
-      }
+      height: 50vh;
     }
   }
 
   &__content {
-    background-color: $bgColor;
     padding: $spacing--small;
     @media screen and (min-width: 900px) {
+      box-sizing: border-box;
       position: relative;
-      transform: translateY(50vh);
       padding: $spacing;
+      transform: translateY(50vh);
     }
   }
 }

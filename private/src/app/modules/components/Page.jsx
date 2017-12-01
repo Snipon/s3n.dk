@@ -55,9 +55,10 @@ class Page extends React.Component {
         <main className="page content" data-wio-id={this.state.doc.id}>
           <figure className="main-image">
             <img
-              alt="cover"
+              alt="Cover photo"
               src={images.desktop}
-              srcSet={`${images.tablet} 900w, ${images.mobile} 400w`}
+              srcSet={`${images.mobile} 400w, ${images.tablet} 900w, ${images.desktop} 1500w`}
+              sizes="(max-width: 400px) 360px, (max-width: 900px) 860px, 1500px"
             />
           </figure>
           <div className="page__content">
