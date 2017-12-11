@@ -1,8 +1,7 @@
-
 // Dependencies.
 import React from 'react';
-// Components;
-import NotFound from 'components/NotFound';
+// Components.
+import Anim from 'components/Anim';
 // Styles.
 import 'styles/components/Page.scss';
 
@@ -52,14 +51,9 @@ class Page extends React.Component {
     const { doc, images } = this.state;
     if (doc) {
       return (
-        <main className="page content" data-wio-id={this.state.doc.id}>
-          <figure className="main-image">
-            <img
-              alt="Cover photo"
-              src={images.desktop}
-              srcSet={`${images.mobile} 400w, ${images.tablet} 900w, ${images.desktop} 1500w`}
-              sizes="(max-width: 400px) 360px, (max-width: 900px) 860px, 1500px"
-            />
+        <main className="page">
+          <figure className="bg-anim">
+            <Anim />
           </figure>
           <div className="page__content">
             <h1 className="page__title heading">{this.state.doc.getText('page.title')}</h1>

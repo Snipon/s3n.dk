@@ -2,32 +2,17 @@
 
 .page {
   position: relative;
-  .wio-link {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 100;
-  }
-  .main-image {
-    img {
-      width: 100vw;
-    }
-
-    @media screen and (min-width: 900px) {
-      overflow: hidden;
-      position: fixed;
-      top: 3rem;
-      height: 50vh;
-    }
+  .bg-anim {
+    position: fixed;
+    top: 0;
   }
 
   &__content {
-    padding: $spacing--small;
-    @media screen and (min-width: 900px) {
-      box-sizing: border-box;
-      position: relative;
-      padding: $spacing;
-      transform: translateY(50vh);
-    }
+    position: relative;
+    z-index: 1;
+    padding: $spacing;
+    margin: auto;
+    margin-top: 3rem;
+    max-width: 960px;
   }
 }
