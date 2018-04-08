@@ -1,0 +1,14 @@
+@import '../tools/vars';
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  &__item {
+    transition: transform 350ms ease;
+    padding: $spacing__small;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}

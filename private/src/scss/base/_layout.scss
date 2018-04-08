@@ -1,5 +1,6 @@
 @import '../tools/vars';
-.sitemast {
+.sitemast,
+.sitefooter {
   position: fixed;
   top: 0;
   left: 0;
@@ -7,6 +8,16 @@
   background-color: rgba($fgColor, 0.9);
   z-index: 2;
   width: 100%;
+}
+
+.sitefooter {
+  top: auto;
+  bottom: 0;
+}
+
+.footer-links {
+  max-width: 960px;
+  margin: auto;
 }
 
 .site-name {

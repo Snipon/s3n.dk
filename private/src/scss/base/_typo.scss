@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond');
+@import url('https://fonts.googleapis.com/css?family=Monoton');
 // Font family.
 $font--main: 'Cormorant Garamond', serif;
 
@@ -56,4 +57,13 @@ a {
   &--large {
     font-size: $font-size--XL;
   }
+}
+
+.site-name {
+  font-family: monoton, cursive;
+  font-size: 2rem;
+}
+
+.page__content {
+  color: $readingTextColor;
 }
