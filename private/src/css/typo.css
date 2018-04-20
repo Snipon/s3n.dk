@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+:root {
+  font-family: 'Quicksand', sans-serif;
+}
+
+.largeHeading {
+  font-size: 10em;
+}
