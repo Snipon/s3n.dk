@@ -1,6 +1,7 @@
 :root {
-  --bgColor: goldenRod;
-  --fgColor: brown;
+  --bgColor: rgb(240, 240, 240);
+  --fgColor: rgb(50, 50, 50);
+  --bgColorOpaque: rgba(240, 240, 240, 0.9)
 }
 
 * {
@@ -16,7 +17,9 @@ body {
 .root {
   height: 100vh;
   width: 100vw;
-  padding: 3rem 0;
+  padding: 4rem 0;
+  position: relative;
+  z-index: 2;
 }
 
 .region {
@@ -24,7 +27,7 @@ body {
 }
 
 .region:not(.main) {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--bgColorOpaque);
 }
 
 .region--inner {

@@ -50,7 +50,7 @@ module.exports = {
         appleStartup: false,
         coast: false,
         favicons: true,
-        firefox: false,
+        firefox: true,
         opengraph: false,
         twitter: false,
         yandex: false,

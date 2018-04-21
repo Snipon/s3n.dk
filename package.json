@@ -13,6 +13,7 @@
     "postcss-loader": "^2.1.4",
     "preact": "^8.2.7",
     "style-loader": "^0.21.0",
+    "three": "^0.92.0",
     "ts-loader": "^4.2.0",
     "ts-node": "^6.0.0",
     "tslint": "^5.9.1",
