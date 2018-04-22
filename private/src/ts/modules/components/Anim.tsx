@@ -9,6 +9,7 @@ interface StateTypes {}
 
 export default class extends Component<PropTypes, StateTypes> {
   private mount
+  private _objects = []
   private _frameId
   private _scene = new THREE.Scene();
   private _camera = new THREE.PerspectiveCamera(
@@ -17,12 +18,13 @@ export default class extends Component<PropTypes, StateTypes> {
     1,
     1000
   );
-  private _ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+  private _ambientLight = new THREE.AmbientLight(0xffffff, 0.6)
   private _light = new THREE.DirectionalLight(0xffffff, 1, 100);
-  private _geometry = new THREE.BoxBufferGeometry(1, 1000, 1);
+  private _geometry = new THREE.BoxBufferGeometry( 1, 1000, 1 );
   private _renderer = new THREE.WebGLRenderer({ antialias: false })
-  private _radius = 100
-  private _theta = 0
+  private _radius = 10
+  private _dolly = 0
+  private _objectRotateSpeed = 0
 
   constructor () {
     super()
@@ -45,15 +47,17 @@ export default class extends Component<PropTypes, StateTypes> {
     const count = 250;
     for ( let i = 0; i < count; i++ ) {
       const color = i % 10 === 1 ? Math.random() * 0xffffff : 0xffffff;
-      const object = new THREE.Mesh( this._geometry, new THREE.MeshLambertMaterial( { color }))
+      const object = new THREE.Mesh( this._geometry, new THREE.MeshLambertMaterial( {
+        color
+      }))
       object.position.x = Math.random() * 800 - 400
       object.position.y = Math.random() * 800 - 400
       object.position.z = Math.random() * 800 - 400
       object.rotation.x = Math.random() * 2 * Math.PI
       object.rotation.y = Math.random() * 2 * Math.PI
       object.rotation.z = Math.random() * 2 * Math.PI
-      object.scale.y = Math.random() + 1
       this._scene.add( object )
+      this._objects.push(object)
     }
 
     this._renderer.setPixelRatio(window.devicePixelRatio)
@@ -71,12 +75,17 @@ export default class extends Component<PropTypes, StateTypes> {
   }
 
   _renderScene () {
-    this._theta += 0.02;
-    this._camera.position.x = this._radius * Math.sin( THREE.Math.degToRad( this._theta ) )
-    this._camera.position.y = this._radius * Math.sin( THREE.Math.degToRad( this._theta ) )
-    this._camera.position.z = this._radius * Math.cos( THREE.Math.degToRad( this._theta ) )
+    this._dolly += 0.05;
+    this._camera.position.x = this._radius * Math.sin( THREE.Math.degToRad( this._dolly ) )
+    this._camera.position.z = this._radius * Math.cos( THREE.Math.degToRad( this._dolly ) )
     this._camera.lookAt( this._scene.position )
     this._camera.updateMatrixWorld()
+
+    for (let object of this._objects) {
+      this._objectRotateSpeed += Math.random() * 0.0001
+      object.rotation.x = THREE.Math.degToRad( this._objectRotateSpeed )
+      object.rotation.y = THREE.Math.degToRad( this._objectRotateSpeed )
+    }
 
     return this._renderer.render(this._scene, this._camera)
   }
