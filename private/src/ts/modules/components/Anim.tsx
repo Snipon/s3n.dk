@@ -63,7 +63,8 @@ export default class extends Component<PropTypes, StateTypes> {
     this._renderer.setPixelRatio(window.devicePixelRatio)
     this._renderer.setSize(window.innerWidth, window.innerHeight)
 
-    window.addEventListener('resize', () => this._onWindowResize())
+    const events= ['resize', 'orientationchange'];
+    events.map(event => window.addEventListener(event, () => this._onWindowResize()) )
 
     this.mount.appendChild(this._renderer.domElement)
     this._start()
