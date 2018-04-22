@@ -18,9 +18,9 @@ export default class extends Component<PropTypes, StateTypes> {
     1,
     1000
   );
-  private _ambientLight = new THREE.AmbientLight(0xffffff, 0.6)
+  private _ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
   private _light = new THREE.DirectionalLight(0xffffff, 1, 100);
-  private _geometry = new THREE.BoxBufferGeometry( 1, 1000, 1 );
+  private _geometry = new THREE.BoxBufferGeometry(1, 2000, 1);
   private _renderer = new THREE.WebGLRenderer({ antialias: false })
   private _radius = 10
   private _dolly = 0
@@ -39,7 +39,7 @@ export default class extends Component<PropTypes, StateTypes> {
 
     this._scene.background = new THREE.Color( 'rgb(240, 240, 240)' )
 
-    this._light.position.set( 0, 1, 0 ).normalize()
+    this._light.position.set( 2, 2, 2 ).normalize()
     this._scene.add( this._light )
     this._scene.add( this._ambientLight )
     this._scene.fog = new THREE.Fog('rgb(240, 240, 240)', 0, 400)
