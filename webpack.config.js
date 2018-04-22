@@ -58,7 +58,11 @@ module.exports = {
       }
     }),
     new HtmlWebpackPlugin({
-      title: 'Simon Larsson'
+      title: 'Simon Larsson',
+      meta: {
+        viewport: 'width=device-width,initial-scale=1',
+        description: 'My name is Simon Larsson. I am a web developer from Sweden who lives in Denmark. I work with Drupal at Reload A/S.'
+      }
     })
   ]
 };

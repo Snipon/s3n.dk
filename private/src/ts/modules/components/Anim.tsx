@@ -75,7 +75,7 @@ export default class extends Component<PropTypes, StateTypes> {
   }
 
   _renderScene () {
-    this._dolly += 0.05;
+    this._dolly += 0.01;
     this._camera.position.x = this._radius * Math.sin( THREE.Math.degToRad( this._dolly ) )
     this._camera.position.z = this._radius * Math.cos( THREE.Math.degToRad( this._dolly ) )
     this._camera.lookAt( this._scene.position )
