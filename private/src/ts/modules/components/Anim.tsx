@@ -18,10 +18,10 @@ export default class extends Component<PropTypes, StateTypes> {
     1,
     1000
   );
-  private _ambientLight = new THREE.AmbientLight('white', 0.3);
+  private _ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
   private _light = new THREE.DirectionalLight(0xffffff, 1, 100);
-  private _geometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
-  private _renderer = new THREE.WebGLRenderer({ antialias: false })
+  private _geometry = new THREE.BoxBufferGeometry(1, 500, 1);
+  private _renderer = new THREE.WebGLRenderer({ antialias: true })
   private _raycaster = new THREE.Raycaster()
   private _mouse = new THREE.Vector2()
   private _radius = 100
@@ -46,7 +46,7 @@ export default class extends Component<PropTypes, StateTypes> {
     this._scene.add( this._ambientLight )
     this._scene.fog = new THREE.Fog('rgb(240, 240, 240)', 0, 400)
 
-    for ( let i = 0; i < 1000; i++ ) {
+    for ( let i = 0; i < 500; i++ ) {
       const object = new THREE.Mesh( this._geometry, new THREE.MeshLambertMaterial( { color: 'white' } ))
       object.position.x = Math.random() * 800 - 400
       object.position.y = Math.random() * 800 - 400
@@ -54,9 +54,7 @@ export default class extends Component<PropTypes, StateTypes> {
       object.rotation.x = Math.random() * 2 * Math.PI
       object.rotation.y = Math.random() * 2 * Math.PI
       object.rotation.z = Math.random() * 2 * Math.PI
-      object.scale.x = Math.random() + 0.5
-      object.scale.y = Math.random() + 0.5
-      object.scale.z = Math.random() + 0.5
+      object.scale.y = Math.random() + 1
       this._scene.add( object )
     }
 
