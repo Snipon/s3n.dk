@@ -6,3 +6,10 @@ jobs:
     steps:
       - checkout
       - run: yarn && yarn build
+      - run:
+          name: Creating Dummy Artifacts
+          command: |
+            mkdir /tmp/artifacts
+            tar -zcvf /tmp/artifacts/build-$(date "+%d%m%y-%H%M%S").tar.gz public;
+      - store_artifacts:
+          path: mkdir /tmp/artifacts
