@@ -1,6 +1,18 @@
 import { h, Component } from 'preact'
 
-import * as THREE from 'three'
+import {
+  Scene,
+  PerspectiveCamera,
+  AmbientLight,
+  DirectionalLight,
+  BoxBufferGeometry,
+  WebGLRenderer,
+  Color,
+  Fog,
+  Mesh,
+  MeshLambertMaterial,
+  Math as TMath
+}  from 'three'
 
 import 'Styles/components/anim'
 
@@ -11,17 +23,17 @@ export default class extends Component<PropTypes, StateTypes> {
   private mount
   private _objects = []
   private _frameId
-  private _scene = new THREE.Scene();
-  private _camera = new THREE.PerspectiveCamera(
+  private _scene = new Scene();
+  private _camera = new PerspectiveCamera(
     28,
     window.innerWidth / window.innerHeight,
     1,
     1000
   );
-  private _ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
-  private _light = new THREE.DirectionalLight(0xffffff, 1, 100);
-  private _geometry = new THREE.BoxBufferGeometry(1, 2000, 1);
-  private _renderer = new THREE.WebGLRenderer({ antialias: false })
+  private _ambientLight = new AmbientLight(0xffffff, 0.5)
+  private _light = new DirectionalLight(0xffffff, 1, 100)
+  private _geometry = new BoxBufferGeometry(1, 2000, 1)
+  private _renderer = new WebGLRenderer({ antialias: false })
   private _radius = 10
   private _dolly = 0
   private _objectRotateSpeed = 0
@@ -37,17 +49,17 @@ export default class extends Component<PropTypes, StateTypes> {
   componentDidMount () {
     this._camera.position.z = 100
 
-    this._scene.background = new THREE.Color( 'rgb(240, 240, 240)' )
+    this._scene.background = new Color( 'rgb(240, 240, 240)' )
 
     this._light.position.set( 2, 2, 2 ).normalize()
     this._scene.add( this._light )
     this._scene.add( this._ambientLight )
-    this._scene.fog = new THREE.Fog('rgb(240, 240, 240)', 0, 400)
+    this._scene.fog = new Fog('rgb(240, 240, 240)', 0, 400)
 
     const count = 250;
     for ( let i = 0; i < count; i++ ) {
       const color = i % 10 === 1 ? Math.random() * 0xffffff : 0xffffff;
-      const object = new THREE.Mesh( this._geometry, new THREE.MeshLambertMaterial( {
+      const object = new Mesh( this._geometry, new MeshLambertMaterial( {
         color
       }))
       object.position.x = Math.random() * 800 - 400
@@ -77,15 +89,15 @@ export default class extends Component<PropTypes, StateTypes> {
 
   _renderScene () {
     this._dolly += 0.01;
-    this._camera.position.x = this._radius * Math.sin( THREE.Math.degToRad( this._dolly ) )
-    this._camera.position.z = this._radius * Math.cos( THREE.Math.degToRad( this._dolly ) )
+    this._camera.position.x = this._radius * Math.sin( TMath.degToRad( this._dolly ) )
+    this._camera.position.z = this._radius * Math.cos( TMath.degToRad( this._dolly ) )
     this._camera.lookAt( this._scene.position )
     this._camera.updateMatrixWorld()
 
     for (let object of this._objects) {
       this._objectRotateSpeed += Math.random() * 0.0001
-      object.rotation.x = THREE.Math.degToRad( this._objectRotateSpeed )
-      object.rotation.y = THREE.Math.degToRad( this._objectRotateSpeed )
+      object.rotation.x = TMath.degToRad( this._objectRotateSpeed )
+      object.rotation.y = TMath.degToRad( this._objectRotateSpeed )
     }
 
     return this._renderer.render(this._scene, this._camera)
