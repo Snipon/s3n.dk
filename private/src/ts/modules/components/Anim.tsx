@@ -5,12 +5,13 @@ import {
   PerspectiveCamera,
   AmbientLight,
   DirectionalLight,
-  BoxBufferGeometry,
+  CylinderBufferGeometry,
   WebGLRenderer,
   Color,
   Fog,
   Mesh,
   MeshLambertMaterial,
+  Vector3,
   Math as TMath
 }  from 'three'
 
@@ -22,6 +23,11 @@ interface StateTypes {}
 export default class extends Component<PropTypes, StateTypes> {
   private mount
   private _objects = []
+  private _mouse = {
+    x: 0,
+    y: 0,
+    z: 0
+  }
   private _frameId
   private _scene = new Scene();
   private _camera = new PerspectiveCamera(
@@ -31,8 +37,8 @@ export default class extends Component<PropTypes, StateTypes> {
     1000
   );
   private _ambientLight = new AmbientLight(0xffffff, 0.5)
-  private _light = new DirectionalLight(0xffffff, 1, 100)
-  private _geometry = new BoxBufferGeometry(1, 2000, 1)
+  private _light = new DirectionalLight(0xffffff, 0.5, 100)
+  private _geometry = new CylinderBufferGeometry(1, 1, 2000, 32)
   private _renderer = new WebGLRenderer({ antialias: false })
   private _radius = 10
   private _dolly = 0
@@ -78,6 +84,8 @@ export default class extends Component<PropTypes, StateTypes> {
     const events= ['resize', 'orientationchange'];
     events.map(event => window.addEventListener(event, () => this._onWindowResize()) )
 
+    window.addEventListener('mousemove', event => this._mouseMove(event), false);
+
     this.mount.appendChild(this._renderer.domElement)
     this._start()
   }
@@ -87,12 +95,23 @@ export default class extends Component<PropTypes, StateTypes> {
     this.mount.removeChild(this._renderer.domElement)
   }
 
-  _renderScene () {
+  private _mouseMove (event) {
+    // Update the mouse variable
+    event.preventDefault();
+    this._mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+    this._mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+  }
+
+  private _renderScene () {
     this._dolly += 0.01;
     this._camera.position.x = this._radius * Math.sin( TMath.degToRad( this._dolly ) )
     this._camera.position.z = this._radius * Math.cos( TMath.degToRad( this._dolly ) )
     this._camera.lookAt( this._scene.position )
     this._camera.updateMatrixWorld()
+
+    this._light.position.x = this._mouse.x
+    this._light.position.y = this._mouse.y
+    this._light.position.z = this._mouse.z  + 2
 
     for (let object of this._objects) {
       this._objectRotateSpeed += Math.random() * 0.0001
@@ -103,22 +122,22 @@ export default class extends Component<PropTypes, StateTypes> {
     return this._renderer.render(this._scene, this._camera)
   }
 
-  _animate () {
+  private _animate () {
     requestAnimationFrame(this._animate);
     this._renderScene();
   }
 
-  _start () {
+  private _start () {
     if (!this._frameId) {
       this._frameId = window.requestAnimationFrame(this._animate)
     }
   }
 
-  _stop () {
+  private _stop () {
     window.cancelAnimationFrame(this._frameId)
   }
 
-  _onWindowResize() {
+  private _onWindowResize() {
     this._camera.aspect = window.innerWidth / window.innerHeight;
     this._camera.updateProjectionMatrix();
     this._renderer.setSize( window.innerWidth, window.innerHeight );
