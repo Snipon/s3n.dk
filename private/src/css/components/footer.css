@@ -1,0 +1,29 @@
+.footer {
+  bottom: 0;
+  padding: 1rem;
+  position: fixed
+}
+
+.footer-links {
+  list-style: none;
+  letter-spacing: 0.5em;
+}
+
+.footer-links__item {
+  display: inline-block;
+}
+
+.footer-links__item a {
+  color: inherit;
+  display: block;
+  font-size: 1.5rem;
+  padding: 0.25em;
+  opacity: 0.6;
+  transition: opacity 350ms ease;
+  transition: transform 250ms ease;
+}
+
+.footer-links__item a:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}

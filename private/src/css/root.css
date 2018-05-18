@@ -1,0 +1,36 @@
+:root {
+  --bgColor: rgb(240, 240, 240);
+  --fgColor: rgb(50, 50, 50);
+  --bgColorOpaque: rgba(240, 240, 240, 0.9)
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bgColor);
+  color: var(--fgColor);
+  margin: 0;
+}
+
+.root {
+  height: 100vh;
+  width: 100vw;
+  padding: 4rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.region {
+  width: 100%;
+}
+
+.region:not(.main) {
+  background-color: var(--bgColorOpaque);
+}
+
+.region--inner {
+  max-width: 960px;
+  margin: auto;
+}
