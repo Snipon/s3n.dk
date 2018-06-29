@@ -12,6 +12,11 @@ export default () => (
           </a>
         </li>
         <li className='footer-links__item'>
+          <a href='//www.linkedin.com/in/simonlarsson/' target='_BLANK' title='LinkedIn'>
+            <i className='fa fa-linkedin' aria-hidden="true" />
+          </a>
+        </li>
+        <li className='footer-links__item'>
           <a href='//twitter.com/snipon' target='_BLANK' title='Twitter'>
             <i className='fa fa-twitter' aria-hidden="true" />
           </a>

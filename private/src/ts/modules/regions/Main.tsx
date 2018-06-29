@@ -8,8 +8,8 @@ export default () => (
   <main className='region main'>
     <div className='region--inner'>
       <h1 className=''>Hello!</h1>
-      <p>My name is Simon Larsson.</p>
-      <p>Something something soon...</p>
+      <p>I am Simon Larsson.</p>
+      <p>I am developer.</p>
     </div>
   </main>
 )
