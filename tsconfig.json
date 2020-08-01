@@ -1,13 +1,29 @@
 {
   "compilerOptions": {
-    "alwaysStrict": true,
-    "jsx": "react",
-    "target": "es5",
-    "module": "commonjs",
-    "lib": ["dom", "es2015"],
-    "jsxFactory": "h",
-    "noEmitHelpers": true,
-    "importHelpers": true,
-    "sourceMap": true
-  }
+    "target": "es2017",
+    "module": "es2015",
+    "lib": ["es2017", "dom", "dom.iterable"],
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./",
+    "rootDir": "./private/src",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "plugins": [
+      {
+        "name": "ts-lit-plugin",
+        "strict": true
+      }
+    ]
+  },
+  "include": ["private/src/**/*.ts"],
+  "exclude": []
 }
